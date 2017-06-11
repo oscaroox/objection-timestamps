@@ -1,0 +1,36 @@
+{
+  "name": "objection-timestamp",
+  "version": "0.1.0",
+  "description": "Objections js plugin to update created_at and updated_at columns",
+  "main": "index.js",
+  "author": "oscar druiventak <druiventakoscar@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "standard",
+    "test": "mocha --slow 10 --timeout 15000 --reporter spec test.js"
+  },
+  "standard": {
+    "ignore": [
+      "test.js"
+    ]
+  },
+  "keywords": [
+    "objection",
+    "objectionjs",
+    "objection-timestamp",
+    "orm",
+    "plugin",
+    "timestamp"
+  ],
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "knex": "^0.13.0",
+    "mocha": "^3.4.2",
+    "objection": "^0.8.2",
+    "sqlite3": "^3.1.8",
+    "standard": "^10.0.2"
+  },
+  "dependencies": {
+    "lodash.assign": "~4.2.0"
+  }
+}

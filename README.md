@@ -1,4 +1,4 @@
-# Objection-timestamp
+# Objection-timestamps
 [![JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
 Automatically modify the `created_at` and `updated_at` columns on your models.
@@ -11,7 +11,7 @@ The basic setup assumes you have the columns `created_at` and `updated_at` in yo
 ```javascript
 
 let Model = require('objection').Model
-let timestampPlugin = require('objection-timestamp')
+let timestampPlugin = require('objection-timestamps')
 
 class Post extends timestampPlugin(Model) {
     static get tableName () {
@@ -37,7 +37,7 @@ You can pass in an object to override the default settings
 ```javascript
 
 let Model = require('objection').Model
-let timestampPlugin = require('objection-timestamp')({
+let timestampPlugin = require('objection-timestamps')({
     createdAt: 'my_created_at', // change createdAt column name
     updatedAt: 'my_updated_at', // change updatedAt column name
     genDate: function() {

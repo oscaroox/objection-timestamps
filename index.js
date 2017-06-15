@@ -1,5 +1,4 @@
 'use strict'
-const assign = require('lodash.assign')
 
 module.exports = (Model) => {
   let options = {
@@ -11,7 +10,7 @@ module.exports = (Model) => {
   }
   // override settings and return bound function
   if (typeof Model === 'object') {
-    options = assign({}, options, Model)
+    options = Object.assign({}, options, Model)
     return timeStampModel.bind(timeStampModel, options)
   }
   

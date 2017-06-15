@@ -9,6 +9,13 @@
     "lint": "standard",
     "test": "mocha --slow 10 --timeout 15000 --reporter spec test.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oscaroox/objection-timestamps.git"
+  },
+  "bugs": {
+    "url": "https://github.com/oscaroox/objection-timestamps/issues"
+  },
   "standard": {
     "ignore": [
       "test.js"

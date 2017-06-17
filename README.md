@@ -3,6 +3,8 @@
 
 Automatically modify the `created_at` and `updated_at` columns on your models.
 
+[v0.x usage](https://github.com/oscaroox/objection-timestamps/tree/0.2.0)
+
 ## Setup
 
 ### Basic

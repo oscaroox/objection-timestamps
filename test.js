@@ -45,6 +45,9 @@ describe('objection-timestamp test', () => {
       static get tableName () {
         return 'user'
       }
+      static get timestamp () {
+        return true
+      }
     }
 
     return User
@@ -61,7 +64,10 @@ describe('objection-timestamp test', () => {
       static get tableName () {
         return 'user'
       }
+      static get timestamp () {
+        return true
       }
+    }
 
     return User
         .query(knex)
@@ -93,6 +99,9 @@ describe('objection-timestamp test', () => {
     class User extends timeStamp(Model) {
       static get tableName () {
         return 'user'
+      }
+      static get timestamp () {
+        return true
       }
     }
 

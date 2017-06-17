@@ -22,20 +22,26 @@ function timeStampModel (opts, Model) {
     $beforeInsert (ctx) {
       const promise = super.$beforeInsert(ctx)
 
+      if(this.constructor.timestamp) {
+        return Promise.resolve(promise)
+          .then(() => {
+            this[opts.createdAt] = opts.genDate()
+            this[opts.updatedAt] = opts.genDate()
+          })
+      }
       return Promise.resolve(promise)
-                .then(() => {
-                  this[opts.createdAt] = opts.genDate()
-                  this[opts.updatedAt] = opts.genDate()
-                })
     }
 
     $beforeUpdate (opt, ctx) {
       const promise = super.$beforeUpdate(opt, ctx)
 
+      if(this.constructor.timestamp) {
+        return Promise.resolve(promise)
+          .then(() => {
+            this[opts.updatedAt] = opts.genDate()
+          })
+      }
       return Promise.resolve(promise)
-                .then(() => {
-                  this[opts.updatedAt] = opts.genDate()
-                })
     }
   }
 }

@@ -8,6 +8,7 @@ Automatically modify the `created_at` and `updated_at` columns on your models.
 ### Basic
 The basic setup assumes you have the columns `created_at` and `updated_at` in your table.
 
+
 ```javascript
 
 let Model = require('objection').Model
@@ -16,6 +17,11 @@ let timestampPlugin = require('objection-timestamps')
 class Post extends timestampPlugin(Model) {
     static get tableName () {
         return 'user'
+    }
+
+    // allow timestamp plugin on this model
+    static get timestamp () {
+        return true
     }
 }
 
@@ -48,6 +54,11 @@ let timestampPlugin = require('objection-timestamps')({
 class Post extends timestampPlugn(Model) {
     static get tableName () {
         return 'user'
+    }
+
+    // allow timestamp plugin on this model
+    static get timestamp () {
+        return true
     }
 }
 

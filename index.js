@@ -13,7 +13,7 @@ module.exports = (Model) => {
     options = Object.assign({}, options, Model)
     return timeStampModel.bind(timeStampModel, options)
   }
-  
+
   return timeStampModel(options, Model)
 }
 
@@ -22,7 +22,7 @@ function timeStampModel (opts, Model) {
     $beforeInsert (ctx) {
       const promise = super.$beforeInsert(ctx)
 
-      if(this.constructor.timestamp) {
+      if (this.constructor.timestamp) {
         return Promise.resolve(promise)
           .then(() => {
             this[opts.createdAt] = opts.genDate()
@@ -35,7 +35,7 @@ function timeStampModel (opts, Model) {
     $beforeUpdate (opt, ctx) {
       const promise = super.$beforeUpdate(opt, ctx)
 
-      if(this.constructor.timestamp) {
+      if (this.constructor.timestamp) {
         return Promise.resolve(promise)
           .then(() => {
             this[opts.updatedAt] = opts.genDate()

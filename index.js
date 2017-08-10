@@ -18,7 +18,7 @@ module.exports = (Model) => {
 }
 
 function timeStampModel (opts, Model) {
-  return class TimestampModel extends Model {
+  return class extends Model {
     $beforeInsert (ctx) {
       const promise = super.$beforeInsert(ctx)
 

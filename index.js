@@ -25,8 +25,8 @@ function timeStampModel (opts, Model) {
       if (this.constructor.timestamp) {
         return Promise.resolve(promise)
           .then(() => {
-            this[opts.createdAt] = opts.genDate()
-            this[opts.updatedAt] = opts.genDate()
+            this[opts.createdAt] = this[opts.createdAt] || opts.genDate()
+            this[opts.updatedAt] = this[opts.updatedAt] || opts.genDate()
           })
       }
       return Promise.resolve(promise)
@@ -38,7 +38,7 @@ function timeStampModel (opts, Model) {
       if (this.constructor.timestamp) {
         return Promise.resolve(promise)
           .then(() => {
-            this[opts.updatedAt] = opts.genDate()
+            this[opts.updatedAt] = this[opts.updatedAt] || opts.genDate()
           })
       }
       return Promise.resolve(promise)

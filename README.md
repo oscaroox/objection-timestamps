@@ -41,7 +41,7 @@ Post
 ```
 
 ### Advanced
-You can pass in an object to override the default settings 
+You can pass in an object to override the default settings
 ```javascript
 
 let Model = require('objection').Model
@@ -73,5 +73,36 @@ Post
     .then(john => {
         console.log(john.my_created_at) // my date format
         console.log(john.my_updated_at) // my date format
+    })
+```
+
+If you provide custom values plugin won't override them
+```javascript
+
+let Model = require('objection').Model
+let timestampPlugin = require('objection-timestamps')
+
+class Post extends timestampPlugin(Model) {
+    static get tableName () {
+        return 'user'
+    }
+
+    // allow timestamp plugin on this model
+    static get timestamp () {
+        return true
+    }
+}
+
+Post
+    .query()
+    .insertAndFetch({
+        firstName: 'John',
+        lastName: 'Doe',
+        created_at: 'Foobar',
+        updated_at: 'Foobiz'
+    })
+    .then(john => {
+        console.log(john.created_at) // Foobar
+        console.log(john.updated_at) // Foobiz
     })
 ```

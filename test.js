@@ -2,8 +2,12 @@
 
 const timestampPlugin = require('./')
 const expect = require('chai').expect
-const Model = require('objection').Model
+const objection = require('objection');
 const Knex = require('knex')
+
+const Model = objection.Model;
+const mixin = objection.mixin;
+const compose = objection.compose;
 
 describe('objection-timestamp test', () => {
   let knex
@@ -38,6 +42,43 @@ describe('objection-timestamp test', () => {
 
   beforeEach(() => {
     return knex('user').delete()
+  })
+
+  it('should work with the mixin helper', () => {
+    class User extends mixin(Model, [timestampPlugin]) {
+      static get tableName() {
+        return 'user'
+      }
+      static get timestamp () {
+        return true
+      }
+    }
+    return User
+      .query(knex)
+      .insert({firstName: 'user'})
+      .then(user => {
+        expect(Date.parse(user.created_at)).to.not.be.NaN
+        expect(Date.parse(user.updated_at)).to.not.be.NaN
+      })
+  })
+
+  it('should work with the compose helper', () => {
+    class User extends compose(timestampPlugin)(Model) {
+      static get tableName() {
+        return 'user'
+      }
+      static get timestamp () {
+        return true
+      }
+    }
+    
+    return User
+      .query(knex)
+      .insert({firstName: 'user'})
+      .then(user => {
+        expect(Date.parse(user.created_at)).to.not.be.NaN
+        expect(Date.parse(user.updated_at)).to.not.be.NaN
+      })
   })
 
   it('should modify the `created_at` and `updated_at` columns automatically on insert', () => {

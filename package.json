@@ -30,12 +30,18 @@
     "timestamp"
   ],
   "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/knex": "^0.14.14",
+    "@types/mocha": "^5.2.3",
     "chai": "^4.0.2",
     "knex": "0.14.6",
     "mocha": "^3.4.2",
     "objection": "1.1.10",
     "sqlite3": "^4.0.1",
-    "standard": "^10.0.2"
+    "standard": "^10.0.2",
+    "ts-node": "^7.0.0",
+    "tslint": "^5.10.0",
+    "typescript": "^2.9.2"
   },
   "dependencies": {}
 }

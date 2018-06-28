@@ -6,8 +6,11 @@
   "author": "oscar <druiventakoscar@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "lint": "standard",
-    "test": "mocha --slow 10 --timeout 15000 --reporter spec test.js"
+    "lint": "tslint --project tsconfig.json",
+    "pretest": "npm run lint",
+    "prebuild": "rimraf dist && npm run lint",
+    "build": "tsc",
+    "test": "mocha -r ts-node/register test/test.ts"
   },
   "repository": {
     "type": "git",
@@ -37,6 +40,7 @@
     "knex": "0.14.6",
     "mocha": "^3.4.2",
     "objection": "1.1.10",
+    "rimraf": "^2.6.2",
     "sqlite3": "^4.0.1",
     "standard": "^10.0.2",
     "ts-node": "^7.0.0",

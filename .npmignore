@@ -1,0 +1,6 @@
+*.db
+test
+.circleci
+!dist/
+tsconfig.json
+tslint.json

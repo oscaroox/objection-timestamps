@@ -4,7 +4,7 @@ import { Model, ModelOptions, QueryContext } from "objection";
 export interface ITimestampPluginOption {
   createdAt?: string;
   updatedAt?: string;
-  genDate(): string | any;
+  genDate?: () => string | any;
 }
 
 interface IConstructor extends Function {
@@ -31,8 +31,8 @@ export function timestampPlugin(options?: ITimestampPluginOption) {
         if (config.timestamp) {
           return Promise.resolve(promise)
             .then(() => {
-              (this as any)[opts.createdAt!] = (this as any)[opts.createdAt!] || opts.genDate();
-              (this as any)[opts.updatedAt!] = (this as any)[opts.updatedAt!] || opts.genDate();
+              (this as any)[opts.createdAt!] = (this as any)[opts.createdAt!] || opts.genDate!();
+              (this as any)[opts.updatedAt!] = (this as any)[opts.updatedAt!] || opts.genDate!();
             });
         }
         return Promise.resolve(promise);
@@ -45,7 +45,7 @@ export function timestampPlugin(options?: ITimestampPluginOption) {
         if (config.timestamp) {
           return Promise.resolve(promise)
             .then(() => {
-              (this as any)[opts.updatedAt!] = (this as any)[opts.updatedAt!] || opts.genDate();
+              (this as any)[opts.updatedAt!] = (this as any)[opts.updatedAt!] || opts.genDate!();
             });
         }
         return Promise.resolve(promise);

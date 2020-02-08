@@ -1,6 +1,6 @@
 {
   "name": "objection-timestamps",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "description": "Objectionjs plugin to update created_at and updated_at columns",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",

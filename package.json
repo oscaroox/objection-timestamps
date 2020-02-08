@@ -50,6 +50,6 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "objection": ">= 0.8.6 < 2"
+    "objection": ">= 2 < 3"
   }
 }

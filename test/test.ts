@@ -2,15 +2,15 @@
 // tslint:disable:max-classes-per-file
 // tslint:disable:variable-name
 import { expect } from "chai";
-import Knex from "knex";
+import {knex, Knex} from "knex";
 import { compose, mixin, Model } from "objection";
 import { timestampPlugin } from "../src";
 
 describe("objection-timestamp test", () => {
-  let knex: Knex;
+  let db: Knex;
 
   before(() => {
-    knex = Knex({
+    db = knex({
       client: "sqlite3",
       useNullAsDefault: true,
       connection: {
@@ -20,7 +20,7 @@ describe("objection-timestamp test", () => {
   });
 
   before(() => {
-    return knex.schema.createTable("user", (table) => {
+    return db.schema.createTable("user", (table) => {
       table.increments("id").primary();
       table.string("firstName");
       table.string("created_when");
@@ -30,15 +30,15 @@ describe("objection-timestamp test", () => {
   });
 
   after(() => {
-    return knex.schema.dropTable("user");
+    return db.schema.dropTable("user");
   });
 
   after(() => {
-    return knex.destroy();
+    return db.destroy();
   });
 
   beforeEach(() => {
-    return knex("user").delete();
+    return db("user").delete();
   });
 
   it("should work with the mixin helper", () => {
@@ -50,7 +50,7 @@ describe("objection-timestamp test", () => {
       public updated_at!: string;
     }
     return User
-      .query(knex)
+      .query(db)
       .insert({firstName: "user"})
       .then((user) => {
         expect(Date.parse(user.created_at)).to.not.be.NaN;
@@ -68,7 +68,7 @@ describe("objection-timestamp test", () => {
     }
 
     return User
-      .query(knex)
+      .query(db)
       .insert({ firstName: "user" })
       .then((user) => {
         expect(Date.parse(user.created_at)).to.not.be.NaN;
@@ -86,7 +86,7 @@ describe("objection-timestamp test", () => {
     }
 
     return User
-      .query(knex)
+      .query(db)
       .insert({ firstName: "John" })
       .then((john) => {
         expect(Date.parse(john.created_at)).to.not.be.NaN;
@@ -104,7 +104,7 @@ describe("objection-timestamp test", () => {
     }
 
     return User
-      .query(knex)
+      .query(db)
       .insert({ firstName: "John", created_at: "foo", updated_at: "bar" })
       .then((john) => {
         expect(john.created_at).to.equal("foo");
@@ -122,7 +122,7 @@ describe("objection-timestamp test", () => {
     }
 
     return User
-        .query(knex)
+        .query(db)
         .insert({firstName: "Jane"})
         .then((jane) => {
           const createdAt = Date.parse(jane.created_at);
@@ -130,7 +130,7 @@ describe("objection-timestamp test", () => {
           expect(createdAt).to.not.be.NaN;
           expect(updatedAt).to.not.be.NaN;
           return jane
-                .$query(knex)
+                .$query(db)
                 .updateAndFetch({firstName: "Jan"})
                 .then((jan) => {
                   expect(Date.parse(jane.updated_at)).to.not.equal(updatedAt);
@@ -149,7 +149,7 @@ describe("objection-timestamp test", () => {
     }
 
     return User
-        .query(knex)
+        .query(db)
         .insert({firstName: "Jane"})
         .then((jane) => {
           const createdAt = Date.parse(jane.created_at);
@@ -157,7 +157,7 @@ describe("objection-timestamp test", () => {
           expect(createdAt).to.not.be.NaN;
           expect(updatedAt).to.not.be.NaN;
           return jane
-                .$query(knex)
+                .$query(db)
                 .updateAndFetch({firstName: "Jan", updated_at: "bar"})
                 .then((jan) => {
                   expect(jane.updated_at).to.equal("bar");
@@ -184,7 +184,7 @@ describe("objection-timestamp test", () => {
     }
 
     return User
-        .query(knex)
+        .query(db)
         .insert({firstName: "joey"})
         .then((joey) => {
           expect(Date.parse(joey.created_when)).to.not.be.NaN;
@@ -211,7 +211,7 @@ describe("objection-timestamp test", () => {
     }
 
     return User
-        .query(knex)
+        .query(db)
         .insert({ firstName: "joey", created_when: "foo", updated_when: "bar" })
         .then((joey) => {
           expect(joey.created_when).to.equal("foo");

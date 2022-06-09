@@ -38,6 +38,7 @@
     "@types/chai": "^4.1.4",
     "@types/knex": "^0.16.1",
     "@types/mocha": "^9.1.1",
+    "@types/node": "^17.0.41",
     "chai": "^4.0.2",
     "knex": "2.1.0",
     "mocha": "10.0.0",

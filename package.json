@@ -39,7 +39,7 @@
     "@types/knex": "^0.14.14",
     "@types/mocha": "^5.2.3",
     "chai": "^4.0.2",
-    "knex": "0.20.8",
+    "knex": "0.95.15",
     "mocha": "7.0.1",
     "objection": "2.1.2",
     "rimraf": "3.0.1",

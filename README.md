@@ -1,4 +1,5 @@
-[![CircleCI](https://circleci.com/gh/oscaroox/objection-timestamps.svg?style=svg)](https://circleci.com/gh/oscaroox/objection-timestamps)
+![workflow](https://github.com/oscaroox/objection-timestamps/actions/workflows/node.js.yml/badge.svg)
+
 # Objection-timestamps
 
 Automatically modify the `created_at` and `updated_at` columns on your models.
